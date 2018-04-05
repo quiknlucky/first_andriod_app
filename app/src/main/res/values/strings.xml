@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Grocery Assistant</string>
+    <string name="intro_message">Add a new list to get started</string>
+    <string name="new_list_name_text">List Name</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_save">Save</string>
+</resources>
