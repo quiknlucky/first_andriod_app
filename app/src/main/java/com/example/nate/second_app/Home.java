@@ -1,13 +1,17 @@
 package com.example.nate.second_app;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 public class Home extends AppCompatActivity {
 
@@ -17,6 +21,22 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+
+        DBHelper handler = new DBHelper(this);
+        SQLiteDatabase db = handler.getWritableDatabase();
+        // Query for items from the database and get a cursor back
+        Cursor listCursor = db.rawQuery("SELECT  * FROM list", null);
+        Log.d("Main: ", "Created cursor");
+        // Find ListView to populate
+        ListView list_list = (ListView) findViewById(R.id.list_list);
+        // Setup cursor adapter using cursor from last step
+        ListAdapter listAdapter = new ListAdapter(this, listCursor);
+        Log.d("Main: ", "Populated adapter with cursor");
+        // Attach cursor adapter to the ListView
+        list_list.setAdapter(listAdapter);
+        Log.d("Main: ", "attached adapter list to list view");
+
     }
 
     @Override

@@ -13,4 +13,5 @@ public final class ListTable {
         public static final String TABLE_NAME = "list";
         public static final String COLUMN_NAME_LIST_NAME = "list_name";
     }
+    
 }
