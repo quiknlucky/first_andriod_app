@@ -44,17 +44,22 @@ public class NewList extends AppCompatActivity {
                 return true;
 
             case R.id.action_save:
-                //not sure how to reference text in EditText element
-                //String list_name = getString(R.id.editText);
-                String list_name = "new_list"; //hard coded to test insert
+                //get value from edit box
+                EditText nameEdit = (EditText) findViewById(R.id.editName);
+                String list_name = nameEdit.getText().toString();
                 Log.d("NewList: ", "create list: " + list_name);
+
+                //create list record
                 DBHelper handler = new DBHelper(this);
                 Lists new_list = new Lists();
                 new_list.setName(list_name);
                 Log.d("NewList: ", "calling addNewList");
+                //TODO should wrap this in try catch
                 handler.addNewList(new_list);
                 Log.d("NewList: ", "new list created");
                 Toast.makeText(this, "List Saved!", Toast.LENGTH_SHORT).show();
+
+                //send back to home page
                 Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
                 return true;
