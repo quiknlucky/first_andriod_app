@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ListView;
 
 public class Home extends AppCompatActivity {
+    private final static String LOG_TAG = Home.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +28,15 @@ public class Home extends AppCompatActivity {
         SQLiteDatabase db = handler.getWritableDatabase();
         // Query for items from the database and get a cursor back
         Cursor listCursor = db.rawQuery("SELECT  * FROM list", null);
-        Log.d("Main: ", "Created cursor");
+        Log.d(LOG_TAG, "Created cursor, size: " + listCursor.getCount());
         // Find ListView to populate
         ListView list_list = (ListView) findViewById(R.id.list_list);
         // Setup cursor adapter using cursor from last step
         ListAdapter listAdapter = new ListAdapter(this, listCursor);
-        Log.d("Main: ", "Populated adapter with cursor");
+        Log.d(LOG_TAG, "Populated adapter with cursor");
         // Attach cursor adapter to the ListView
         list_list.setAdapter(listAdapter);
-        Log.d("Main: ", "attached adapter list to list view");
+        Log.d(LOG_TAG, "attached adapter list to list view");
 
     }
 
@@ -54,6 +55,7 @@ public class Home extends AppCompatActivity {
                 return true;
 
             case R.id.manage_db:
+                Log.d(LOG_TAG, "Manage db button clicked");
                 Intent dbmanager = new Intent(Home.this,AndroidDatabaseManager.class);
                 startActivity(dbmanager);
                 return true;
@@ -67,6 +69,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void onButtonTap(View v) {
+        Log.d(LOG_TAG, "Create list button clicked");
         Intent intent = new Intent(this, NewList.class);
         startActivity(intent);
     }

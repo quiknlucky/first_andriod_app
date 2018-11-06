@@ -27,6 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d(LOG_TAG, "Creating database object");
         try{
             db.execSQL(CREATE_LIST_TABLE);
             db.execSQL(CREATE_STORE_TABLE);
@@ -40,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(POPULATE_UNIT_CATEGORY_TABLE);
             db.execSQL(POPULATE_LIST_TABLE);
             db.execSQL(POPULATE_LIST_TABLE_2);
+            Log.d(LOG_TAG, "Created and populated database");
         } catch (SQLException e){
             Log.d(LOG_TAG, "Error creating database " + e.getMessage());
         }
