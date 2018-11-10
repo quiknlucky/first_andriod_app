@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
     private final static String LOG_TAG = Home.class.getSimpleName();
@@ -23,6 +25,20 @@ public class Home extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        ListView list_lists = (ListView) findViewById(R.id.list_list);
+        list_lists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Home.this, UseList.class);
+
+                //pass list id to uselist activity
+                Bundle b = new Bundle();
+                b.putLong("id", id);
+                intent.putExtras(b);
+
+                startActivity(intent);
+            }
+        });
 
         DBHelper handler = new DBHelper(this);
         SQLiteDatabase db = handler.getWritableDatabase();
