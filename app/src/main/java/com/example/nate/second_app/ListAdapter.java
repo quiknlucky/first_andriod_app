@@ -10,6 +10,8 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 public class ListAdapter extends CursorAdapter {
+    private final static String LOG_TAG = ListAdapter.class.getSimpleName();
+
     public ListAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
@@ -25,13 +27,13 @@ public class ListAdapter extends CursorAdapter {
     // such as setting the text on a TextView.
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        Log.d("BindView: ", "Inside bindView");
+        Log.d(LOG_TAG, "Inside bindView");
         // Find fields to populate in inflated template
         TextView tvLists = (TextView) view.findViewById(R.id.tvLists);
         // Extract properties from cursor
-        String list_name= cursor.getString(1);
-        Log.d("BindView: ", "List name from cursor: " + list_name);
+        String name= cursor.getString(1);
+        Log.d(LOG_TAG, "Name from cursor to display: " + name);
         // Populate fields with extracted properties
-        tvLists.setText(list_name);
+        tvLists.setText(name);
     }
 }

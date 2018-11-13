@@ -52,7 +52,7 @@ public class Home extends AppCompatActivity {
         Log.d(LOG_TAG, "Populated adapter with cursor");
         // Attach cursor adapter to the ListView
         list_list.setAdapter(listAdapter);
-        Log.d(LOG_TAG, "attached adapter list to list view");
+        Log.d(LOG_TAG, "attached listAdapter to list view");
 
     }
 

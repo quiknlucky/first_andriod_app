@@ -8,17 +8,6 @@
 
     <!--<include layout="@layout/content_use_list" /> -->
 
-    <ListView
-        android:id="@+id/list_items"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:divider="@color/cardview_dark_background"
-        android:dividerHeight="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"></ListView>
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
@@ -49,5 +38,25 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/list_items"
+        android:layout_width="279dp"
+        android:layout_height="411dp"
+        android:layout_marginBottom="29dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="93dp"></ListView>
 
 </android.support.constraint.ConstraintLayout>

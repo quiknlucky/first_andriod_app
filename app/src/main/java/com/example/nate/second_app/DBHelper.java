@@ -76,6 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_ITEM_TABLE =
             "CREATE TABLE " + ItemTable.ItemEntry.TABLE_NAME + "(" +
                     ItemTable.ItemEntry._ID + " INTEGER PRIMARY KEY," +
+                    ItemTable.ItemEntry.COLUMN_NAME_LIST_ID + " INTEGER," +
                     ItemTable.ItemEntry.COLUMN_NAME_ITEM_NAME + " TEXT," +
                     ItemTable.ItemEntry.COLUMN_NAME_CATEGORY + " TEXT," +
                     ItemTable.ItemEntry.COLUMN_NAME_QUANTITY + " NUMBER," +
@@ -132,6 +133,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Inserting new Row
         db.insert(ListTable.ListEntry.TABLE_NAME, null, values);
+        db.close(); // Closing database connection
+    }
+
+    public void addNewItem(Items item) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ItemTable.ItemEntry.COLUMN_NAME_ITEM_NAME, item.getName());
+        values.put(ItemTable.ItemEntry.COLUMN_NAME_LIST_ID, item.getListID());
+
+        // Inserting new Row
+        db.insert(ItemTable.ItemEntry.TABLE_NAME, null, values);
         db.close(); // Closing database connection
     }
 

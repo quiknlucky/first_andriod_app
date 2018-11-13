@@ -11,6 +11,7 @@ public final class ItemTable {
 
     public static class ItemEntry implements BaseColumns {
         public static final String TABLE_NAME = "item";
+        public static final String COLUMN_NAME_LIST_ID = "list_id";
         public static final String COLUMN_NAME_ITEM_NAME = "item_name";
         public static final String COLUMN_NAME_CATEGORY = "category";
         public static final String COLUMN_NAME_QUANTITY = "quantity";
