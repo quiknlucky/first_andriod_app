@@ -8,6 +8,7 @@ public class Items {
     private Integer id;
     private String item_name;
     private Long list_id;
+    private Boolean used;
 
     public int getId() {
         return id;
@@ -28,4 +29,8 @@ public class Items {
     public Long getListID() { return list_id; }
 
     public void setListID(Long id) { this.list_id = id; }
+
+    public Boolean getUsed() { return used; }
+
+    public void setUsed(Boolean used_flag) { this.used = used_flag; }
 }

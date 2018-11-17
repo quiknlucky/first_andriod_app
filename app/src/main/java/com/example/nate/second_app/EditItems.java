@@ -63,6 +63,8 @@ public class EditItems extends AppCompatActivity {
                 Log.d(LOG_TAG, "item name: " + item_name);
                 new_item.setListID(listID);
                 Log.d(LOG_TAG, "listID: " + listID);
+                new_item.setUsed(true);
+                Log.d(LOG_TAG, "set used to true");
                 //TODO add rest of values
 
                 Log.d("NewItem: ", "calling addNewItem");

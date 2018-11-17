@@ -63,22 +63,24 @@ public class DBHelper extends SQLiteOpenHelper {
                     StoreTable.StoreEntry._ID + " INTEGER PRIMARY KEY," +
                     StoreTable.StoreEntry.COLUMN_NAME_STORE_NAME +  " TEXT)";
 
-    private static final String CREATE_ITEM_CATEGORY_TABLE =
-            "CREATE TABLE " + ItemCategoryTable.ItemCategoryEntry.TABLE_NAME + "(" +
-                    ItemCategoryTable.ItemCategoryEntry._ID + " INTEGER PRIMARY KEY," +
-                    ItemCategoryTable.ItemCategoryEntry.COLUMN_NAME_STORE_NAME +  " TEXT)";
+    private static final String CREATE_CATEGORY_TABLE =
+            "CREATE TABLE " + CategoryTable.CategoryEntry.TABLE_NAME + "(" +
+                    CategoryTable.CategoryEntry._ID + " INTEGER PRIMARY KEY," +
+                    CategoryTable.CategoryEntry.COLUMN_NAME_CATEGORY_ID +  " INTEGER)" +
+                    CategoryTable.CategoryEntry.COLUMN_NAME_CATEGORY_NAME +  " TEXT)";
 
-    private static final String CREATE_UNIT_CATEGORY_TABLE =
-            "CREATE TABLE " + UnitCategoryTable.UnitCategoryEntry.TABLE_NAME + "(" +
-                    UnitCategoryTable.UnitCategoryEntry._ID + " INTEGER PRIMARY KEY," +
-                    UnitCategoryTable.UnitCategoryEntry.COLUMN_NAME_STORE_NAME +  " TEXT)";
+    private static final String CREATE_UNIT_TABLE =
+            "CREATE TABLE " + UnitTable.UnitEntry.TABLE_NAME + "(" +
+                    UnitTable.UnitEntry._ID + " INTEGER PRIMARY KEY," +
+                    UnitTable.UnitEntry.COLUMN_NAME_UNIT_NAME +  " TEXT)";
 
     private static final String CREATE_ITEM_TABLE =
             "CREATE TABLE " + ItemTable.ItemEntry.TABLE_NAME + "(" +
                     ItemTable.ItemEntry._ID + " INTEGER PRIMARY KEY," +
                     ItemTable.ItemEntry.COLUMN_NAME_LIST_ID + " INTEGER," +
                     ItemTable.ItemEntry.COLUMN_NAME_ITEM_NAME + " TEXT," +
-                    ItemTable.ItemEntry.COLUMN_NAME_CATEGORY + " TEXT," +
+                    ItemTable.ItemEntry.COLUMN_NAME_CATEGORY_ID + " INTEGER," +
+                    ItemTable.ItemEntry.COLUMN_NAME_USED + " BOOLEAN," +
                     ItemTable.ItemEntry.COLUMN_NAME_QUANTITY + " NUMBER," +
                     ItemTable.ItemEntry.COLUMN_NAME_QUANTITY_UNIT + " TEXT," +
                     ItemTable.ItemEntry.COLUMN_NAME_LAST_UNIT_PRICE + " NUMBER," +
@@ -95,7 +97,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + HistoryTable.HistoryEntry.TABLE_NAME + "(" +
                     HistoryTable.HistoryEntry._ID + " INTEGER PRIMARY KEY," +
                     HistoryTable.HistoryEntry.COLUMN_NAME_ITEM_NAME + " TEXT," +
-                    HistoryTable.HistoryEntry.COLUMN_NAME_CATEGORY + " TEXT," +
+                    HistoryTable.HistoryEntry.COLUMN_NAME_CATEGORY_ID + " INTEGER," +
                     HistoryTable.HistoryEntry.COLUMN_NAME_QUANTITY + " NUMBER," +
                     HistoryTable.HistoryEntry.COLUMN_NAME_QUANTITY_UNIT + " TEXT," +
                     HistoryTable.HistoryEntry.COLUMN_NAME_UNIT_PRICE + " NUMBER," +
@@ -142,6 +144,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(ItemTable.ItemEntry.COLUMN_NAME_ITEM_NAME, item.getName());
         values.put(ItemTable.ItemEntry.COLUMN_NAME_LIST_ID, item.getListID());
+        values.put(ItemTable.ItemEntry.COLUMN_NAME_USED, item.getUsed());
 
         // Inserting new Row
         db.insert(ItemTable.ItemEntry.TABLE_NAME, null, values);
