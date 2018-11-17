@@ -106,23 +106,55 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //populate validation tables with generic data
     private static final String POPULATE_STORE_TABLE =
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME +
-                    " (store_name) VALUES ('COSTCO')";
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Costco')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Albertsons')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Safeway')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Target')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Walmart')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Rosauers')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Whole Foods')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Trader Joes')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Aldi')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Hy-Vee')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Kroger')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Town & Country')" +
+            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('WinCo')";
 
-    private static final String POPULATE_ITEM_CATEGORY_TABLE =
-            "INSERT INTO " + ItemCategoryTable.ItemCategoryEntry.TABLE_NAME +
-                    " (item_category_name) VALUES ('FRUIT')";
+    private static final String POPULATE_CATEGORY_TABLE =
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0100','Dairy and Egg Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0200','Spices and Herbs')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0300','Baby Foods')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0400','Fats and Oils')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0500','Poultry Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0600','Soups, Sauces, and Gravies')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0700','Sausages and Luncheon Meats')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0800','Breakfast Cereals')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0900','Fruits and Fruit Juices')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1000','Pork Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1100','Vegetables and Vegetable Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1200','Nut and Seed Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1300','Beef Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1400','Beverages')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1500','Finfish and Shellfish Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1600','Legumes and Legume Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1700','Lamb, Veal, and Game Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1800','Baked Products')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1900','Sweets')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2000','Cereal Grains and Pasta')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2100','Fast Foods')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2200','Meals, Entrees, and Side Dishes')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2500','Snacks')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('3500','American Indian/Alaska Native Foods')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('3600','Restaurant Foods')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('7000','Personal Care')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('8000','Pharmacy')" +
+            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('9000','Household')";
 
     private static final String POPULATE_UNIT_TABLE =
             "INSERT INTO " + UnitTable.UnitEntry.TABLE_NAME + " (unit_category_name) VALUES ('POUND')";
 
     private static final String POPULATE_LIST_TABLE =
-            "INSERT INTO " + ListTable.ListEntry.TABLE_NAME +
-                    " (list_name) VALUES ('test_list_1')";
-
-    private static final String POPULATE_LIST_TABLE_2 =
-            "INSERT INTO " + ListTable.ListEntry.TABLE_NAME +
-                    " (list_name) VALUES ('test_list_2')";
+            "INSERT INTO " + ListTable.ListEntry.TABLE_NAME + " (list_name) VALUES ('Example Grocery List')";
 
 
     public void addNewList(Lists list) {
