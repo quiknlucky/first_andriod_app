@@ -31,16 +31,15 @@ public class DBHelper extends SQLiteOpenHelper {
         try{
             db.execSQL(CREATE_LIST_TABLE);
             db.execSQL(CREATE_STORE_TABLE);
-            db.execSQL(CREATE_ITEM_CATEGORY_TABLE);
-            db.execSQL(CREATE_UNIT_CATEGORY_TABLE);
+            db.execSQL(CREATE_CATEGORY_TABLE);
+            db.execSQL(CREATE_UNIT_TABLE);
             db.execSQL(CREATE_ITEM_TABLE);
             db.execSQL(CREATE_HISTORY_TABLE);
 
             db.execSQL(POPULATE_STORE_TABLE);
-            db.execSQL(POPULATE_ITEM_CATEGORY_TABLE);
-            db.execSQL(POPULATE_UNIT_CATEGORY_TABLE);
+            db.execSQL(POPULATE_CATEGORY_TABLE);
+            db.execSQL(POPULATE_UNIT_TABLE);
             db.execSQL(POPULATE_LIST_TABLE);
-            db.execSQL(POPULATE_LIST_TABLE_2);
             Log.d(LOG_TAG, "Created and populated database");
         } catch (SQLException e){
             Log.d(LOG_TAG, "Error creating database " + e.getMessage());
@@ -114,9 +113,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "INSERT INTO " + ItemCategoryTable.ItemCategoryEntry.TABLE_NAME +
                     " (item_category_name) VALUES ('FRUIT')";
 
-    private static final String POPULATE_UNIT_CATEGORY_TABLE =
-            "INSERT INTO " + UnitCategoryTable.UnitCategoryEntry.TABLE_NAME +
-                    " (unit_category_name) VALUES ('POUND')";
+    private static final String POPULATE_UNIT_TABLE =
+            "INSERT INTO " + UnitTable.UnitEntry.TABLE_NAME + " (unit_category_name) VALUES ('POUND')";
 
     private static final String POPULATE_LIST_TABLE =
             "INSERT INTO " + ListTable.ListEntry.TABLE_NAME +
