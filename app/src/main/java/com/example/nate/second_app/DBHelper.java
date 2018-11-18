@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 import android.database.MatrixCursor;
 import android.database.Cursor;
@@ -28,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(LOG_TAG, "Creating database object");
+        db.beginTransaction();
         try{
             db.execSQL(CREATE_LIST_TABLE);
             db.execSQL(CREATE_STORE_TABLE);
@@ -36,13 +38,125 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_ITEM_TABLE);
             db.execSQL(CREATE_HISTORY_TABLE);
 
-            db.execSQL(POPULATE_STORE_TABLE);
-            db.execSQL(POPULATE_CATEGORY_TABLE);
-            db.execSQL(POPULATE_UNIT_TABLE);
+            //populate store table
+            SQLiteStatement insert_store_rec = db.compileStatement("INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES (?); ");
+            insert_store_rec.bindString(1, "Albertsons");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Aldi");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Costco");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Hy-Vee");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Kroger");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Rosauers");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Safeway");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Target");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Town & Country");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Trader Joes");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Walmart");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "Whole Foods");
+            insert_store_rec.executeInsert();
+            insert_store_rec.bindString(1, "WinCo");
+            insert_store_rec.executeInsert();
+            Log.d(LOG_TAG, "Finished populating store table");
+
+            //populate category table
+            SQLiteStatement insert_category_rec = db.compileStatement("INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES (?,?); ");
+            insert_category_rec.bindLong(1, 100); insert_category_rec.bindString(2,"Dairy and Egg Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 200); insert_category_rec.bindString(2,"Spices and Herbs");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 300); insert_category_rec.bindString(2,"Baby Foods");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 400); insert_category_rec.bindString(2,"Fats and Oils");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 500); insert_category_rec.bindString(2,"Poultry Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 600); insert_category_rec.bindString(2,"Soups, Sauces, and Gravies");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 700); insert_category_rec.bindString(2,"Sausages and Luncheon Meats");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 800); insert_category_rec.bindString(2,"Breakfast Cereals");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 900); insert_category_rec.bindString(2,"Fruits and Fruit Juices");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1000); insert_category_rec.bindString(2,"Pork Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1100); insert_category_rec.bindString(2,"Vegetables and Vegetable Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1200); insert_category_rec.bindString(2,"Nut and Seed Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1300); insert_category_rec.bindString(2,"Beef Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1400); insert_category_rec.bindString(2,"Beverages");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1500); insert_category_rec.bindString(2,"Finfish and Shellfish Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1600); insert_category_rec.bindString(2,"Legumes and Legume Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1700); insert_category_rec.bindString(2,"Lamb, Veal, and Game Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1800); insert_category_rec.bindString(2,"Baked Products");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 1900); insert_category_rec.bindString(2,"Sweets");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 2000); insert_category_rec.bindString(2,"Cereal Grains and Pasta");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 2100); insert_category_rec.bindString(2,"Fast Foods");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 2200); insert_category_rec.bindString(2,"Meals, Entrees, and Side Dishes");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 2500); insert_category_rec.bindString(2,"Snacks");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 3500); insert_category_rec.bindString(2,"American Indian/Alaska Native Foods");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 3600); insert_category_rec.bindString(2,"Restaurant Foods");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 7000); insert_category_rec.bindString(2,"Personal Care");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 8000); insert_category_rec.bindString(2,"Pharmacy");
+            insert_category_rec.executeInsert();
+            insert_category_rec.bindLong(1, 9000); insert_category_rec.bindString(2,"Household");
+            insert_category_rec.executeInsert();
+            Log.d(LOG_TAG, "Finished populating category table");
+
+            //populate unit table
+            SQLiteStatement insert_unit_rec = db.compileStatement("INSERT INTO " + UnitTable.UnitEntry.TABLE_NAME + " (unit_name) VALUES (?); ");
+            insert_unit_rec.bindString(1, "pound");
+            insert_unit_rec.executeInsert();
+            insert_unit_rec.bindString(1, "ounce");
+            insert_unit_rec.executeInsert();
+            insert_unit_rec.bindString(1, "gallon");
+            insert_unit_rec.executeInsert();
+            insert_unit_rec.bindString(1, "liter");
+            insert_unit_rec.executeInsert();
+            insert_unit_rec.bindString(1, "quart");
+            insert_unit_rec.executeInsert();
+            insert_unit_rec.bindString(1, "pint");
+            insert_unit_rec.executeInsert();
+            insert_unit_rec.bindString(1, "gram");
+            insert_unit_rec.executeInsert();
+            insert_unit_rec.bindString(1, "kilogram");
+            insert_unit_rec.executeInsert();
+            Log.d(LOG_TAG, "Finished populating unit table");
+
+            //populate list table
             db.execSQL(POPULATE_LIST_TABLE);
-            Log.d(LOG_TAG, "Created and populated database");
+
+            Log.d(LOG_TAG, "Finished loading database");
+            db.setTransactionSuccessful();
         } catch (SQLException e){
             Log.d(LOG_TAG, "Error creating database " + e.getMessage());
+        } finally {
+            db.endTransaction();
         }
     }
 
@@ -65,7 +179,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_CATEGORY_TABLE =
             "CREATE TABLE " + CategoryTable.CategoryEntry.TABLE_NAME + "(" +
                     CategoryTable.CategoryEntry._ID + " INTEGER PRIMARY KEY," +
-                    CategoryTable.CategoryEntry.COLUMN_NAME_CATEGORY_ID +  " INTEGER)" +
+                    CategoryTable.CategoryEntry.COLUMN_NAME_CATEGORY_ID +  " INTEGER," +
                     CategoryTable.CategoryEntry.COLUMN_NAME_CATEGORY_NAME +  " TEXT)";
 
     private static final String CREATE_UNIT_TABLE =
@@ -103,55 +217,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     HistoryTable.HistoryEntry.COLUMN_NAME_TOTAL_PRICE + " NUMBER," +
                     HistoryTable.HistoryEntry.COLUMN_NAME_DATE + " DATE," +
                     HistoryTable.HistoryEntry.COLUMN_NAME_STORE + " TEXT)";
-
-    //populate validation tables with generic data
-    private static final String POPULATE_STORE_TABLE =
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Costco')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Albertsons')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Safeway')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Target')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Walmart')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Rosauers')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Whole Foods')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Trader Joes')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Aldi')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Hy-Vee')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Kroger')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('Town & Country')" +
-            "INSERT INTO " + StoreTable.StoreEntry.TABLE_NAME + " (store_name) VALUES ('WinCo')";
-
-    private static final String POPULATE_CATEGORY_TABLE =
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0100','Dairy and Egg Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0200','Spices and Herbs')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0300','Baby Foods')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0400','Fats and Oils')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0500','Poultry Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0600','Soups, Sauces, and Gravies')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0700','Sausages and Luncheon Meats')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0800','Breakfast Cereals')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('0900','Fruits and Fruit Juices')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1000','Pork Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1100','Vegetables and Vegetable Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1200','Nut and Seed Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1300','Beef Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1400','Beverages')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1500','Finfish and Shellfish Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1600','Legumes and Legume Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1700','Lamb, Veal, and Game Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1800','Baked Products')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('1900','Sweets')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2000','Cereal Grains and Pasta')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2100','Fast Foods')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2200','Meals, Entrees, and Side Dishes')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('2500','Snacks')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('3500','American Indian/Alaska Native Foods')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('3600','Restaurant Foods')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('7000','Personal Care')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('8000','Pharmacy')" +
-            "INSERT INTO " + CategoryTable.CategoryEntry.TABLE_NAME + " (category_id, category_name) VALUES ('9000','Household')";
-
-    private static final String POPULATE_UNIT_TABLE =
-            "INSERT INTO " + UnitTable.UnitEntry.TABLE_NAME + " (unit_category_name) VALUES ('POUND')";
 
     private static final String POPULATE_LIST_TABLE =
             "INSERT INTO " + ListTable.ListEntry.TABLE_NAME + " (list_name) VALUES ('Example Grocery List')";
