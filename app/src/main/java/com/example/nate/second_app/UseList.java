@@ -72,7 +72,7 @@ public class UseList extends AppCompatActivity {
 
     public void onButtonTap(View v) {
         Log.d(LOG_TAG, "Create item button clicked");
-        Intent intent = new Intent(this, EditItems.class);
+        Intent intent = new Intent(this, ManageItems.class);
 
         //pass list id to edititem activity
         Bundle b = new Bundle();

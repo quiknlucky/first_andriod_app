@@ -39,7 +39,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nate.second_app.Home" />
         </activity>
-        <activity android:name=".EditItems"></activity>
+        <activity android:name=".EditItems" />
+        <activity
+            android:name=".ManageItems"
+            android:label="@string/title_activity_manage_items"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
