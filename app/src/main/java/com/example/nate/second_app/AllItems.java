@@ -1,13 +1,12 @@
 package com.example.nate.second_app;
 
 /**
- * Created by Nate on 11/10/2018.
+ * Created by Nate on 11/23/2018.
  */
 
-public class Items {
+public class AllItems {
     private Integer id;
     private String item_name;
-    private Long list_id;
     private Boolean used;
 
     public int getId() {
@@ -26,7 +25,7 @@ public class Items {
         this.item_name = name;
     }
 
-    public Long getListID() { return list_id; }
+    public Boolean getUsed() { return used; }
 
-    public void setListID(Long id) { this.list_id = id; }
+    public void setUsed(Boolean used_flag) { this.used = used_flag; }
 }

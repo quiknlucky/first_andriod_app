@@ -36,6 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_CATEGORY_TABLE);
             db.execSQL(CREATE_UNIT_TABLE);
             db.execSQL(CREATE_ITEM_TABLE);
+            db.execSQL(CREATE_ALLITEM_TABLE);
             db.execSQL(CREATE_HISTORY_TABLE);
 
             //populate store table
@@ -148,8 +149,62 @@ public class DBHelper extends SQLiteOpenHelper {
             insert_unit_rec.executeInsert();
             Log.d(LOG_TAG, "Finished populating unit table");
 
-            //populate list table
+            //populate all_item table
+            SQLiteStatement insert_allitem_rec = db.compileStatement("INSERT INTO " + AllItemTable.AllItemEntry.TABLE_NAME + " (item_id, item_name, category_id) VALUES (?, ?, ?); ");
+            insert_allitem_rec.bindString(1, "01009");
+            insert_allitem_rec.bindString(2, "Cheese, cheddar");
+            insert_allitem_rec.bindString(3, "0100");
+            insert_allitem_rec.executeInsert();
+            insert_allitem_rec.bindString(1, "01079");
+            insert_allitem_rec.bindString(2, "Milk, 2%");
+            insert_allitem_rec.bindString(3, "0100");
+            insert_allitem_rec.executeInsert();
+            insert_allitem_rec.bindString(1, "01179");
+            insert_allitem_rec.bindString(2, "Sour cream, light");
+            insert_allitem_rec.bindString(3, "0100");
+            insert_allitem_rec.executeInsert();
+            insert_allitem_rec.bindString(1, "11124");
+            insert_allitem_rec.bindString(2, "Carrots, raw");
+            insert_allitem_rec.bindString(3, "1100");
+            insert_allitem_rec.executeInsert();
+            insert_allitem_rec.bindString(1, "11135");
+            insert_allitem_rec.bindString(2, "Cauliflower, raw");
+            insert_allitem_rec.bindString(3, "1100");
+            insert_allitem_rec.executeInsert();
+            insert_allitem_rec.bindString(1, "11167");
+            insert_allitem_rec.bindString(2, "Corn, sweet, yellow, raw");
+            insert_allitem_rec.bindString(3, "1100");
+            insert_allitem_rec.executeInsert();
+
+            //populate list table with sample list
             db.execSQL(POPULATE_LIST_TABLE);
+
+            //populate item table for sample list
+            SQLiteStatement insert_item_rec = db.compileStatement("INSERT INTO " + ItemTable.ItemEntry.TABLE_NAME + " (list_id, item_id, item_name, category_id) VALUES (?, ?, ?, ?); ");
+            insert_item_rec.bindString(1, "1");
+            insert_item_rec.bindString(2, "01009");
+            insert_item_rec.bindString(3, "Cheese, cheddar");
+            insert_item_rec.bindString(4, "0100");
+            insert_item_rec.executeInsert();
+            insert_item_rec.bindString(1, "1");
+            insert_item_rec.bindString(2, "01079");
+            insert_item_rec.bindString(3, "Milk, 2%");
+            insert_item_rec.bindString(4, "0100");
+            insert_item_rec.executeInsert();
+            insert_item_rec.bindString(1, "1");
+            insert_item_rec.bindString(2, "01179");
+            insert_item_rec.bindString(3, "Sour cream, light");
+            insert_item_rec.bindString(4, "0100");
+            insert_item_rec.executeInsert();
+
+            //update all_item table with items on sample list
+            SQLiteStatement update_allitem_rec = db.compileStatement("UPDATE " + AllItemTable.AllItemEntry.TABLE_NAME + " SET used = 'Y' WHERE item_id = ?; ");
+            update_allitem_rec.bindString(1, "01009");
+            update_allitem_rec.executeInsert();
+            update_allitem_rec.bindString(1, "01079");
+            update_allitem_rec.executeInsert();
+            update_allitem_rec.bindString(1, "01179");
+            update_allitem_rec.executeInsert();
 
             Log.d(LOG_TAG, "Finished loading database");
             db.setTransactionSuccessful();
@@ -191,9 +246,9 @@ public class DBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + ItemTable.ItemEntry.TABLE_NAME + "(" +
                     ItemTable.ItemEntry._ID + " INTEGER PRIMARY KEY," +
                     ItemTable.ItemEntry.COLUMN_NAME_LIST_ID + " INTEGER," +
+                    ItemTable.ItemEntry.COLUMN_NAME_ITEM_ID + " INTEGER," +
                     ItemTable.ItemEntry.COLUMN_NAME_ITEM_NAME + " TEXT," +
                     ItemTable.ItemEntry.COLUMN_NAME_CATEGORY_ID + " INTEGER," +
-                    ItemTable.ItemEntry.COLUMN_NAME_USED + " BOOLEAN," +
                     ItemTable.ItemEntry.COLUMN_NAME_QUANTITY + " NUMBER," +
                     ItemTable.ItemEntry.COLUMN_NAME_QUANTITY_UNIT + " TEXT," +
                     ItemTable.ItemEntry.COLUMN_NAME_LAST_UNIT_PRICE + " NUMBER," +
@@ -205,6 +260,14 @@ public class DBHelper extends SQLiteOpenHelper {
                     ItemTable.ItemEntry.COLUMN_NAME_MIN_PRICE_DATE + " DATE," +
                     ItemTable.ItemEntry.COLUMN_NAME_MIN_PRICE_STORE + " TEXT," +
                     ItemTable.ItemEntry.COLUMN_NAME_MAX_PRICE + " NUMBER)";
+
+    private static final String CREATE_ALLITEM_TABLE =
+            "CREATE TABLE " + AllItemTable.AllItemEntry.TABLE_NAME + "(" +
+                    AllItemTable.AllItemEntry._ID + " INTEGER PRIMARY KEY," +
+                    AllItemTable.AllItemEntry.COLUMN_NAME_ITEM_ID + " INTEGER," +
+                    AllItemTable.AllItemEntry.COLUMN_NAME_ITEM_NAME + " TEXT," +
+                    AllItemTable.AllItemEntry.COLUMN_NAME_CATEGORY_ID + " INTEGER," +
+                    AllItemTable.AllItemEntry.COLUMN_NAME_USED + " TEXT)";
 
     private static final String CREATE_HISTORY_TABLE =
             "CREATE TABLE " + HistoryTable.HistoryEntry.TABLE_NAME + "(" +
@@ -239,7 +302,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(ItemTable.ItemEntry.COLUMN_NAME_ITEM_NAME, item.getName());
         values.put(ItemTable.ItemEntry.COLUMN_NAME_LIST_ID, item.getListID());
-        values.put(ItemTable.ItemEntry.COLUMN_NAME_USED, item.getUsed());
 
         // Inserting new Row
         db.insert(ItemTable.ItemEntry.TABLE_NAME, null, values);

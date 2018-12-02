@@ -12,9 +12,9 @@ public final class ItemTable {
     public static class ItemEntry implements BaseColumns {
         public static final String TABLE_NAME = "item";
         public static final String COLUMN_NAME_LIST_ID = "list_id";
+        public static final String COLUMN_NAME_ITEM_ID = "item_id";
         public static final String COLUMN_NAME_ITEM_NAME = "item_name";
         public static final String COLUMN_NAME_CATEGORY_ID = "category_id";
-        public static final String COLUMN_NAME_USED = "used";
         public static final String COLUMN_NAME_QUANTITY = "quantity";
         public static final String COLUMN_NAME_QUANTITY_UNIT = "quantity_unit";
         public static final String COLUMN_NAME_LAST_UNIT_PRICE = "last_unit_price";
